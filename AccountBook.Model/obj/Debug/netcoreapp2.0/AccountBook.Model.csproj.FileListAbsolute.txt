@@ -1,0 +1,11 @@
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\AccountBook.Model.deps.json
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\AccountBook.Model.dll
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.csproj.CoreCompileInputs.cache
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.AssemblyInfoInputs.cache
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.AssemblyInfo.cs
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\AccountBook.Model.runtimeconfig.json
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\AccountBook.Model.runtimeconfig.dev.json
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\AccountBook.Model.pdb
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.dll
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.pdb
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.csprojResolveAssemblyReference.cache

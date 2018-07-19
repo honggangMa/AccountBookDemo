@@ -11,3 +11,11 @@ C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcorea
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Common.pdb
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.dll
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.pdb
+F:\code\AccountBookDemo\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Common.deps.json
+F:\code\AccountBookDemo\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Common.dll
+F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.csproj.CoreCompileInputs.cache
+F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.AssemblyInfoInputs.cache
+F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.AssemblyInfo.cs
+F:\code\AccountBookDemo\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Common.pdb
+F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.dll
+F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.pdb

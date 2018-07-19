@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,10 +44,11 @@ namespace AccountBook.Common
             using (System.IO.StreamReader reader = new System.IO.StreamReader(respStream))
             {
                 string jsonText = reader.ReadToEnd();
-                JObject ja = (JObject)JsonConvert.DeserializeObject(jsonText);                
+                    Newtonsoft.Json.Linq.JObject ja = (Newtonsoft.Json.Linq.JObject)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonText);                
                 if (ja["code"].ToString() == "0")
                 {                                             
-                string[] addresArry = { ja["data"]["country"].ToString(), ja["data"]["region"].ToString(), ja["data"]["city"].ToString() };
+                string[] addresArry = { ja["data"]["country"].ToString(), ja["data"]["region"].ToString(),
+                            ja["data"]["city"].ToString() };
                 return string.Join("-", addresArry);
                     }
                 else

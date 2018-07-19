@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace AccountBook.Web
 {
@@ -19,7 +21,7 @@ namespace AccountBook.Web
         {
             Configuration = configuration;
         }
-
+        private IServiceCollection _services;
         public IConfiguration Configuration { get; }
 
       
@@ -30,7 +32,18 @@ namespace AccountBook.Web
 
             var sqlconnectionStr = Configuration.GetConnectionString("SqlServerConnection");
             services.AddDbContext<AppliactionDbContext>(options => options.UseSqlServer(sqlconnectionStr));
-            services.AddMvc();
+            services.AddMvc()
+                  .AddJsonOptions(options =>
+                  {
+                      //忽略循环引用
+                      options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                      //不使用驼峰样式的key
+                      options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                      //设置时间格式
+                      options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                  }
+                );
+            _services = services;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,11 +59,12 @@ namespace AccountBook.Web
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
+            app.UseDefaultFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Admin}/{action=ExpenseList}/{id?}");
             });
         }
     }

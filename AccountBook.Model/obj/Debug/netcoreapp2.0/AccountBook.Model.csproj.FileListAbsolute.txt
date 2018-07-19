@@ -9,3 +9,8 @@ C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreap
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.dll
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.pdb
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.csprojResolveAssemblyReference.cache
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\AccountBook.Common.dll
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\Newtonsoft.Json.dll
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\AccountBook.Common.pdb
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\bin\Debug\netcoreapp2.0\Newtonsoft.Json.xml
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Model\obj\Debug\netcoreapp2.0\AccountBook.Model.csproj.CopyComplete

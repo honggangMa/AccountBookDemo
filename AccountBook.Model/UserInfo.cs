@@ -14,5 +14,9 @@ namespace AccountBook.Model
         public string Password { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
+        [MaxLength(80)]
+        public string  IP { get; set; }
+        [MaxLength(32)]
+        public string  RoleName { get; set; }
     }
 }

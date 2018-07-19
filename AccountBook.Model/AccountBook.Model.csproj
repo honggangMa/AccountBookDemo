@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.tools" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AccountBook.Common\AccountBook.Common.csproj" />
+  </ItemGroup>
+
 </Project>

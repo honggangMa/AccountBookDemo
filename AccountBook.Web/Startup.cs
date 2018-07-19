@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using AccountBook.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace AccountBook.Web
 {
@@ -23,6 +25,9 @@ namespace AccountBook.Web
       
         public void ConfigureServices(IServiceCollection services)
         {
+            //利用ASP.NET Core的依赖注入容器系统，通过请求获取IHttpContextAccessor接口，我们拥有模拟使用HttpContext.Current这样API的可能性。但是因为IHttpContextAccessor接口默认不是由依赖注入进行实例管理的。我们先要将它注册到ServiceCollection中：
+           // services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             var sqlconnectionStr = Configuration.GetConnectionString("SqlServerConnection");
             services.AddDbContext<AppliactionDbContext>(options => options.UseSqlServer(sqlconnectionStr));
             services.AddMvc();

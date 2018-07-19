@@ -23,3 +23,5 @@ C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Web\obj\Debug\netcoreapp2
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Web\obj\Debug\netcoreapp2.0\AccountBook.Web.csproj.CopyComplete
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Web\obj\Debug\netcoreapp2.0\AccountBook.Web.dll
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Web\obj\Debug\netcoreapp2.0\AccountBook.Web.pdb
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Web\bin\Debug\netcoreapp2.0\AccountBook.Common.dll
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Web\bin\Debug\netcoreapp2.0\AccountBook.Common.pdb

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccountBook.Model.Migrations
 {
     [DbContext(typeof(AppliactionDbContext))]
-    [Migration("20180717091354_MigrationsName")]
-    partial class MigrationsName
+    [Migration("20180719091402_Migrations")]
+    partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,21 @@ namespace AccountBook.Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<decimal>("AfternoonMoney");
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<decimal>("EveningMoney");
+
+                    b.Property<decimal>("MoreMoney");
+
+                    b.Property<decimal>("MorningMoney");
+
+                    b.Property<string>("Remark")
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime?>("UpdateTime");
+
                     b.Property<int?>("UserId");
 
                     b.HasKey("Id");
@@ -34,6 +49,33 @@ namespace AccountBook.Model.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Expense");
+                });
+
+            modelBuilder.Entity("AccountBook.Model.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<string>("IP")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("State");
+
+                    b.Property<int?>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Log");
                 });
 
             modelBuilder.Entity("AccountBook.Model.UserInfo", b =>
@@ -44,10 +86,16 @@ namespace AccountBook.Model.Migrations
 
                     b.Property<DateTime>("CreateTime");
 
+                    b.Property<string>("IP")
+                        .HasMaxLength(80);
+
                     b.Property<string>("Password")
                         .HasMaxLength(32);
 
-                    b.Property<DateTime>("UpdateTime");
+                    b.Property<string>("RoleName")
+                        .HasMaxLength(32);
+
+                    b.Property<DateTime?>("UpdateTime");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(50);
@@ -58,6 +106,13 @@ namespace AccountBook.Model.Migrations
                 });
 
             modelBuilder.Entity("AccountBook.Model.Expense", b =>
+                {
+                    b.HasOne("AccountBook.Model.UserInfo", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("AccountBook.Model.Log", b =>
                 {
                     b.HasOne("AccountBook.Model.UserInfo", "User")
                         .WithMany()

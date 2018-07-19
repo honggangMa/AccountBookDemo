@@ -5058,10 +5058,21 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "AccountBook.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/AccountBook.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AccountBook.Common.dll": {}
+        }
+      },
       "AccountBook.Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
+          "AccountBook.Common": "1.0.0",
           "Microsoft.EntityFrameworkCore": "2.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.1",
           "Microsoft.EntityFrameworkCore.tools": "2.1.1"
@@ -13250,6 +13261,11 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
+    },
+    "AccountBook.Common/1.0.0": {
+      "type": "project",
+      "path": "../AccountBook.Common/AccountBook.Common.csproj",
+      "msbuildProject": "../AccountBook.Common/AccountBook.Common.csproj"
     },
     "AccountBook.Model/1.0.0": {
       "type": "project",

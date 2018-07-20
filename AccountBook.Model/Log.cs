@@ -15,6 +15,9 @@ namespace AccountBook.Model
         public string  Content { get; set; }
         [MaxLength(100)]
         public string  Address { get; set; }
-        public virtual UserInfo User { get; set; }
+        public virtual UserInfo User { get; set; }//引用导航属性
+        //时间戳
+        // [Timestamp]
+        //public byte[] Timestamp { get; set; }
     }
 }

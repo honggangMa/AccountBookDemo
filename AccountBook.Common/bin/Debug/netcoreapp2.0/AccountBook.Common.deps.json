@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v2.0": {
       "AccountBook.Common/1.0.0": {
         "dependencies": {
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "11.0.2",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.0.2.0"
         },
         "runtime": {
           "AccountBook.Common.dll": {}
@@ -16,10 +17,12 @@
       },
       "Newtonsoft.Json/11.0.2": {
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.2.21924"
-          }
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.0.2.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Http.Abstractions.dll": {}
         }
       }
     }
@@ -36,6 +39,11 @@
       "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.0.2.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

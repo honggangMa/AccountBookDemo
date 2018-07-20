@@ -3,6 +3,7 @@
     Layout = null;
     
 }
+@model AccountBook.Model.UserInfo
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="icon" href="favicon.ico">
-    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
-    <link href="~/Content/layui/css/index.css" rel="stylesheet" />
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/layui/css/index.css" rel="stylesheet" />
 </head>
 <body class="main_body">
     <div class="layui-layout layui-layout-admin">
@@ -37,7 +38,7 @@
                         <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
                     </li>
                     <li class="layui-nav-item" id="userInfo">
-                        <a href="javascript:;"><img src="~/Content/image/userimg.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">@Model.UserName</cite></a>
+                        <a href="javascript:;"><img src="~/Content/image/userimg.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">admin</cite></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite><span class="layui-badge-dot"></span></a></dd>
                             <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite><span class="layui-badge-dot"></span></a></dd>
@@ -57,30 +58,29 @@
                     <li class="layui-nav-item layui-nav-itemed ">
                         <a href="javascript:;" data-url="@Url.Action("Main","Admin")"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a>
                     </li>
-                    @*@foreach (var parent in list)
-                    {
-                        <li class="layui-nav-item ">
-                            <a class="" href="javascript:;">
-                                <i class="fa fa-plug" aria-hidden="true"></i><cite> @parent.MenuName</cite>
-                                <span class="layui-nav-more"></span>
-                            </a>
-                            @foreach (var item in data)
-                            {
-                                if (parent.MenuId == item.MenuParentId)
-                                {
-                                    <dl class="layui-nav-child">
-                                        <dd>
-                                            <a data-url="@item.MenuUrl"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i>     <cite>@item.MenuName</cite></a>
-                                        </dd>
-                                    </dl>
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-                            }
-                        </li>
-                    }*@
+                    <li class="layui-nav-item ">
+                        <a class="" href="javascript:;">
+                            <i class="fa fa-plug" aria-hidden="true"></i><cite>系统管理</cite>
+                            <span class="layui-nav-more"></span>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a data-url="/Category/CategoryList"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i>     <cite>用户列表</cite></a>
+                            </dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item ">
+                        <a class="" href="javascript:;">
+                            <i class="fa fa-plug" ></i><cite>账目管理</cite>
+                            <span class="layui-nav-more"></span>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a data-url="/Admin/ExpenseList" aria-hidden="true"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>消费列表</cite></a>
+                            </dd>
+                        </dl>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -112,8 +112,10 @@
     <!-- 移动导航 -->
     <div class="site-tree-mobile"><i class="layui-icon">&#xe602;</i></div>
     <div class="site-mobile-shade"></div>
-    <script src="~/Content/layui/layui.js"></script>
-    <script src="~/Content/js/admin/index.js"></script>
-    <script src="~/Content/js/admin/cache.js"></script>
+    <script src="~/layui/layui.js"></script>
+    <script src="~/admin/index.js"></script>
+    <script src="~/admin/cache.js"></script>
+   
+   
 </body>
 </html>

@@ -1,0 +1,116 @@
+﻿@model AccountBook.Model.Expense
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditAdmin</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="favicon.ico">
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <form class="layui-form" action="" lay-filter="formTest">
+        <div class="divCommon">
+            <div class="layui-form-item">
+                <label class="layui-form-label">早餐</label>
+                <div class="layui-col-sm4">
+                    <input type="text" name="MorningMoney" lay-verify="MorningMoney" value="@Model.MorningMoney" autocomplete="off" placeholder="请输入早餐消费额" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">午餐</label>
+                <div class="layui-col-sm4">
+                    <input type="text" name="AfternoonMoney" lay-verify="AfternoonMoney" value="@Model.AfternoonMoney" autocomplete="off" placeholder="请输入午餐消费额" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">晚餐</label>
+                <div class="layui-col-sm4">
+                    <input type="text" name="EveningMoney" lay-verify="EveningMoney" value="@Model.EveningMoney" autocomplete="off" placeholder="请输入晚餐消费额" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">零碎</label>
+                <div class="layui-col-sm4">
+                    <input type="text" name="MoreMoney" lay-verify="MoreMoney" value="@Model.MoreMoney" autocomplete="off" placeholder="请输入零碎消费额" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">晚餐</label>
+                <div class="layui-col-sm4">
+                    <textarea name="Remark" lay-verify="Remark" placeholder="请输入内容" class="layui-textarea">@Model.Remark</textarea>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-col-sm1">
+                    <input type="hidden" name="Id" lay-verify="AdminId" value="@Model.Id" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+                    <button type="reset" id="btnReset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="~/layui/layui.js"></script>  
+    <script type="text/javascript">
+        layui.use('form', function () {
+            var form = layui.form,
+                $ = layui.jquery;
+            form.verify({
+                MorningMoney: function (value, item) {//value：表单的值、item：表单的DOM对象
+                    if (value ==0) {
+                        return "早餐消费不能为空";
+                    }
+                },
+                AfternoonMoney: function (value, item) {
+                    if (value ==0) {
+                        return "午餐消费不能为空";
+                    }
+                },
+                EveningMoney: function (value, item) {
+                    if (value ==0) {
+                        return "午餐消费不能为空";
+                    }
+                },
+                Remark: function (value, item) {
+                    if (value ==0) {
+                        return "备注不能为空";
+                    }
+                },
+            });
+
+            form.on('submit(formDemo)', function (data) {
+                var model = data.field;
+                $.post('/Admin/EditExpense', { expense: model }, function (data) {
+                    if (data == "ok") {
+                        layer.msg("恭喜：提交成功！", { icon: 6, time: 1200 }, function () {
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index); //再执行关闭
+                            $('.layui-laypage-btn').click();
+                        });
+                    } else if (data == "no") {
+                        layer.msg("提示：数据提交失败了");
+                    } else {
+                        layer.msg("提示：系统异常,请稍后再试");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

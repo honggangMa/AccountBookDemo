@@ -31,13 +31,13 @@ namespace AccountBook.Web
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred while seeding the database.");
                 }
-            }
-
+            }            
             host.Run();
         }
-
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            //改成5000端口
+                .UseUrls("http://localhost:5000")
                 .UseStartup<Startup>()
                 .Build();
     }

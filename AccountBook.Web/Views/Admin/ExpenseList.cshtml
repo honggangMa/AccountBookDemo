@@ -2,7 +2,6 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link href="~/layui/css/layui.css" rel="stylesheet" />
-    <link href="~/layui/css/public.css" rel="stylesheet" />
-   
+    <link href="~/layui/css/public.css" rel="stylesheet" />  
 </head>
 <body class="childrenBody">
     <form class="layui-form">
@@ -28,7 +26,7 @@
                     <a class="layui-btn search_btn" data-type="reload">搜索</a>
                 </div>
                 <div class="layui-inline">
-                    <a class="layui-btn layui-btn-normal addUser_btn">添加用户</a>
+                    <a class="layui-btn layui-btn-normal addUser_btn">新增一条</a>
                 </div>
                 <div class="layui-inline">
                     <a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
@@ -37,7 +35,6 @@
         <table id="newsList" lay-filter="newsList"></table>
 
         <script type="text/html" id="listBar">
-            <a class="layui-btn layui-btn-xs layui-btn-normal " lay-event="setMenu">设置权限</a>
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
         </script>
@@ -93,8 +90,8 @@
             });
 
             $(".addUser_btn").click(function () {
-                var url = "/Admin/EditAdmin";
-                openWindow("添加用户", url);
+                var url = "/Admin/EditExpense";
+                openWindow("新增数据", url);
             });
             //批量删除
             $(".delAll_btn").click(function () {
@@ -103,12 +100,12 @@
                     strIds = "";
                 if (data.length > 0) {
                     for (var i in data) {
-                        strIds += data[i].AdminId + ',';
-                        // ids.push(data[i].AdminId);
+                        strIds += data[i].Id + ',';
+                        // ids.push(data[i].Id);
                     }
                     strIds = strIds.substr(0, strIds.lastIndexOf(','));
-                    layer.confirm('确定删除选中的用户？', { icon: 3, title: '提示信息' }, function (index) {
-                        $.get("/Admin/UpdateAdminList", {
+                    layer.confirm('确定删除所选数据？', { icon: 3, title: '提示信息' }, function (index) {
+                        $.get("/Admin/DeleteExpense", {
                             ids: strIds
                         }, function (data) {
                             if (data == "ok") {
@@ -120,7 +117,7 @@
                         })
                     })
                 } else {
-                    layer.msg("请选择需要删除的用户");
+                    layer.msg("请选择需要删除的数据");
                 }
             })
             //列表操作
@@ -128,13 +125,13 @@
                 var layEvent = obj.event,
                     data = obj.data;
                 if (layEvent === 'edit') { //编辑
-                    var url = "/Admin/EditAdmin?adminId=" + data.AdminId;
-                    openWindow("编辑用户", url);
+                    var url = "/Admin/EditExpense?id=" + data.Id;
+                    openWindow("编辑信息", url);
                 }
                 else if (layEvent === 'del') { //删除
-                    layer.confirm('确定删除此用户？', { icon: 3, title: '提示信息' }, function (index) {
-                        $.get("/Admin/UpdateAdminList", {
-                            ids: data.AdminId
+                    layer.confirm('确定删除此数据？', { icon: 3, title: '提示信息' }, function (index) {
+                        $.get("/Admin/DeleteExpense", {
+                            id: data.Id
                         }, function (data) {
                             if (data == "ok") {
                                 tableIns.reload();
@@ -144,12 +141,7 @@
                             }
                         })
                     });
-                } else if (layEvent == "setMenu") {
-
-                    var url = "/Admin/SetMenu?adminId=" + data.AdminId;
-
-                    openWindow("给所选用户设置权限", url);
-                }
+                } 
             });
             //添加,编辑调用的窗口
             function openWindow(titleName, url) {

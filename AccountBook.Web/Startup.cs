@@ -22,16 +22,14 @@ namespace AccountBook.Web
             Configuration = configuration;
         }
         private IServiceCollection _services;
-        public IConfiguration Configuration { get; }
-
-      
+        public IConfiguration Configuration { get; }      
         public void ConfigureServices(IServiceCollection services)
         {
             //利用ASP.NET Core的依赖注入容器系统，通过请求获取IHttpContextAccessor接口，我们拥有模拟使用HttpContext.Current这样API的可能性。但是因为IHttpContextAccessor接口默认不是由依赖注入进行实例管理的。我们先要将它注册到ServiceCollection中：
            // services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            var sqlconnectionStr = Configuration.GetConnectionString("SqlServerConnection");
-            services.AddDbContext<AppliactionDbContext>(options => options.UseSqlServer(sqlconnectionStr));
+           
+            services.AddDbContext<AppliactionDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnection"), o => o.UseRowNumberForPaging()));
+        
             services.AddMvc()
                   .AddJsonOptions(options =>
                   {
@@ -64,7 +62,7 @@ namespace AccountBook.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Admin}/{action=ExpenseList}/{id?}");
+                    template: "{controller=Admin}/{action=Index}/{id?}");
             });
         }
     }

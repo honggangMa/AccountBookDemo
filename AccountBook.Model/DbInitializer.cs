@@ -1,4 +1,4 @@
-﻿using AccountBook.Common;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +17,10 @@ namespace AccountBook.Model
             }
             var users = new UserInfo[]
             {
-                new UserInfo(){ UserName="mhg",Password="123456",CreateTime=DateTime.Now,IP=Net.Ip,RoleName="普通用户"},
-                 new UserInfo(){ UserName="张三",Password="123456",CreateTime=DateTime.Now,IP=Net.Ip,RoleName="普通用户"},
-                  new UserInfo(){ UserName="李思",Password="123456",CreateTime=DateTime.Now,IP=Net.Ip,RoleName="普通用户"},
-                   new UserInfo(){ UserName="老王",Password="123456",CreateTime=DateTime.Now,IP=Net.Ip,RoleName="普通用户"},
+                new UserInfo(){ UserName="mhg",Password="123456",CreateTime=DateTime.Now,IP="125.122.25.2",RoleName="普通用户"},
+                 new UserInfo(){ UserName="张三",Password="123456",CreateTime=DateTime.Now,IP="125.122.25.2",RoleName="普通用户"},
+                  new UserInfo(){ UserName="李思",Password="123456",CreateTime=DateTime.Now,IP="125.122.25.2",RoleName="普通用户"},
+                   new UserInfo(){ UserName="老王",Password="123456",CreateTime=DateTime.Now,IP="125.122.25.2",RoleName="普通用户"},
             };
             foreach (UserInfo s in users)
             {

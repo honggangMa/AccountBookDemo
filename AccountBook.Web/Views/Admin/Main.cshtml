@@ -19,7 +19,7 @@
 <body class="childrenBody">
     <blockquote class="layui-elem-quote layui-bg-green">
         <div id="nowTime">
-            亲爱的admin<span id="nowTime2"></span>
+            亲爱的@{@ViewData["CurrnetUserName"]}<span id="nowTime2"></span>
         </div>
         @*，@{@ViewBag.Time}好！欢迎使用该系统。当前时间为：@DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss")@ViewBag.DayOfWeek*@
     </blockquote>
@@ -168,7 +168,7 @@
         </div>
     </div>
     <script src="~/admin/jquery-1.10.2.min.js"></script>
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+   
     <script src="~/layui/layui.js"></script>
     <script src="~/admin/main.js"></script>
 </body>

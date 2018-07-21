@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>后台登录</title>
+    <meta name="author" content="DeathGhost" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/layer.css" rel="stylesheet" />
+    <style>
+        body {
+            height: 100%;
+            background: #242926;
+            overflow: hidden;
+        }
+        canvas {
+            z-index: -1;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    
+    <form  id="loginForm" method="post">
+        <dl class="admin_login">
+            <dt>
+                <strong>后台管理系统入口</strong>
+                <em>Network Management System</em>
+            </dt>
+            <dd class="user_icon">
+                <input type="text" placeholder="账号" class="login_txtbx" name="LoginCode" id="LoginCode" />
+            </dd>
+            <dd class="pwd_icon">
+                <input type="password" placeholder="密码" class="login_txtbx" name="LoginPwd" id="LoginPwd" />
+            </dd>
+            <dd class="val_icon">
+                <input type="text" placeholder="验证码" class="login_txtbx" id="code" name="vCode" />
+            </dd>
+            <dd style="text-align:right">
+                <img id="img" src="/Login/VCode/?id=1" style="float: left; height: 28px;width:100px;" />
+                <div style="float: left; margin-right: 5px; margin-top: 5px;">
+                    <a href="javascript:void(0)" onclick="changeSrcCode(); return false;"><span style="font-size:18px;color:white">看不清，换一张</span></a>
+                </div>
+            </dd>
+            <dd>
+                <input type="button" value="立即登录" id="btnLogin" class="submit_btn" />
+            </dd>
+            <dd>
+                <p>© 2018-2019  版权所有</p>
+                <p>B2-20080224-1</p>
+            </dd>
+        </dl>
+    </form>
+    <script src="~/js/jquery-1.10.2.min.js"></script>
+    <script src="~/js/Particleground.js"></script>
+    <script src="~/js/layer.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var userName = $("#LoginCode"), pwd = $("#LoginPwd"), vcdoe = $("#code");
+            $("#btnLogin").click(function () {              
+                if (userName.val() == "") {
+                    layer.msg("请输入用户名");
+                    return;
+                }
+                if (pwd.val() == "") {
+                    layer.msg("请输入登录密码");
+                    return;
+                }
+                if (vcdoe.val() == "") {
+                    layer.msg("请输入验证码");
+                    return;
+                }
+                $.post("/Login/SignIn", { userName: userName.val(), pwd: pwd.val(), vcode:vcdoe.val() }, function (data) {
+                    var msgData = data.split(",");
+                    if (msgData[0] == "no") {
+                        layer.msg(msgData[1]);
+                        var name = document.getElementById("LoginCode").value = "";
+                        var pwd = document.getElementById("LoginPwd").value = "";
+                        var code = document.getElementById("code").value = "";
+                        changeSrcCode();
+                    }
+                    else if (msgData[0] == "ok") {
+                        setTimeout(function () {
+                            top.location.href = "/Admin/Index";
+                        }, 500);
+                    }
+                    else {
+                        layer.msg("系统繁忙，请稍候再试！")
+                    }
+                });
+            });
+        });
+        //点击验证码变换事件
+        function changeSrcCode() {
+            $("#img").attr("src", $("#img").attr("src") + 1);// 取得img属性 得到src地址给它+1 是为了每次变换验证码
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            //粒子背景特效
+            $('body').particleground({
+                dotColor: '#5cbdaa',
+                lineColor: '#5cbdaa'
+            });
+        });
+    </script>
+</body>
+
+</html>

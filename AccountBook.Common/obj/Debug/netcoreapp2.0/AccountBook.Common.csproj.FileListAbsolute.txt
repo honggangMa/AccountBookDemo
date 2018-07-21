@@ -17,3 +17,7 @@ C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcorea
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.csproj.CopyComplete
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.dll
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.pdb
+F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.csprojAssemblyReference.cache
+F:\code\AccountBookDemo\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Model.dll
+F:\code\AccountBookDemo\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Model.pdb
+F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.csproj.CopyComplete

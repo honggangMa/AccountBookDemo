@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,32 @@ namespace AccountBook.Common
     /// </summary>
     public class Net
     {
-
-
-        public static string  Ip
+        private static IHttpContextAccessor _httpContextAccessor;
+        public Net(HttpContextAccessor httpContextAccessor)
         {
-            get
-            {
-                return "125.122.25.2";
+            _httpContextAccessor=httpContextAccessor;;
+        }
 
-            }
+        //public static string  Ip
+        //{
+        //    get
+        //    {
+        //        return "125.122.25.2";
+
+        //    }
+        //}
+
+        public static  string Ip
+        {
+            get{
+                var ip = _httpContextAccessor.HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+                if (string.IsNullOrEmpty(ip))
+                {
+                    ip = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+                }
+                return ip;
+            }  
+           
         }
 
         /// <summary>

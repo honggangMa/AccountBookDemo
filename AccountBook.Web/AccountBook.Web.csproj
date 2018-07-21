@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AccountBook.Common\AccountBook.Common.csproj" />
     <ProjectReference Include="..\AccountBook.Model\AccountBook.Model.csproj" />
   </ItemGroup>
 

@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AccountBook.Common\AccountBook.Common.csproj" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>

@@ -38,12 +38,12 @@
                         <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
                     </li>
                     <li class="layui-nav-item" id="userInfo">
-                        <a href="javascript:;"><img src="~/Content/image/userimg.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">admin</cite></a>
+                        <a href="javascript:;"><img src="~/images/userimg.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName"> @ViewData["CurrnetUserName"]</cite></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite><span class="layui-badge-dot"></span></a></dd>
                             <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite><span class="layui-badge-dot"></span></a></dd>
                             <dd pc><a href="javascript:;" class="changeSkin"><i class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd>
-                            <dd><a href="/Admin/LogOut" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
+                            <dd><a href="/Login/LogOut" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -60,12 +60,17 @@
                     </li>
                     <li class="layui-nav-item ">
                         <a class="" href="javascript:;">
-                            <i class="fa fa-plug" aria-hidden="true"></i><cite>系统管理</cite>
+                            <i class="fa fa-plug" aria-hidden="true"></i><cite>系统配置</cite>
                             <span class="layui-nav-more"></span>
                         </a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a data-url="/Category/CategoryList"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i>     <cite>用户列表</cite></a>
+                                <a data-url="/User/Index"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i> <cite>用户列表</cite></a>
+                            </dd>
+                        </dl>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a data-url="/User/Index"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i>     <cite>日志列表</cite></a>
                             </dd>
                         </dl>
                     </li>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using AccountBook.Common;
 using AccountBook.Model;
+using AccountBook.Model.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,17 +27,7 @@ namespace AccountBook.Web.Controllers
             return View();
         }
 
-        public string UseCookieGetCurrentUserName()
-        {
-            //如果HttpContext.User.Identity.IsAuthenticated为true，
-            //或者HttpContext.User.Claims.Count()大于0表示用户已经登录
-            string userName = string.Empty;
-            if (HttpContext.User.Identity.IsAuthenticated || HttpContext.User.Claims.Count() > 0)
-            {
-                userName = HttpContext.User.Claims.First().Value;
-            }
-            return userName;
-        }
+       
         public IActionResult ExpenseList()
         {
             return View();
@@ -50,8 +40,18 @@ namespace AccountBook.Web.Controllers
             {
                 data = data.Where(d => d.Remark.Contains(key));
             }
-            data = data.AsNoTracking().OrderByDescending(d => d.CreateTime).Skip(limit * (page - 1)).Take(limit);
-            return Json(new { data = data.ToList(), msg = "ok", count = data.Count(), code = 0 });
+          var rows   = data.Include(d=>d.User).AsNoTracking().OrderByDescending(d => d.CreateTime).Skip(limit * (page - 1)).Take(limit).Select(n=>new ExpenseViewModel() {
+                                                    Id =n.Id,
+                                                    CreateTime =n.CreateTime,
+                                                    MoreMoney=n.MoreMoney,
+                                                    AfternoonMoney=n.AfternoonMoney,
+                                                    MorningMoney=n.MorningMoney,
+                                                    EveningMoney=n.EveningMoney,
+                                                    UserName=n.User.UserName,
+                                                    DaySumMoney=n.MoreMoney + n.EveningMoney+n.AfternoonMoney+n.MorningMoney,
+                                                    Remark=n.Remark
+                                                        });
+            return Json(new { data = rows.ToList(), msg = "ok", count = data.Count(), code = 0 });
         }
         [HttpGet]
         public IActionResult EditExpense(int id = 0)
@@ -80,7 +80,7 @@ namespace AccountBook.Web.Controllers
                     var model = _dbContext.Expense.Where(e => e.Id == expense.Id).FirstOrDefault();
                     if (model != null)
                     {
-                        model.User.Id = int.Parse(HttpContext.User.FindFirst("userid").Value);
+                        model.User= new UserInfo { UserName=UseCookieGetCurrentUserName()};
                         model.UpdateTime = DateTime.Now;
                         model.MorningMoney = expense.MorningMoney;
                         model.EveningMoney = expense.EveningMoney;
@@ -94,7 +94,7 @@ namespace AccountBook.Web.Controllers
                 else
                 {
                     expense.CreateTime = DateTime.Now;
-                    expense.User.Id = int.Parse(HttpContext.User.FindFirst("userid").Value);
+                    expense.User = new UserInfo { UserName = UseCookieGetCurrentUserName() };
                     _dbContext.Expense.Add(expense);
                     CommonOperatorLogData("新增一条消费数据");
                 }

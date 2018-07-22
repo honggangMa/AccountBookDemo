@@ -31,7 +31,7 @@ namespace AccountBook.Web.Controllers
                 log.IP = Net.Ip;
                 log.Content = str;
                 log.Address = Net.GetIPCitys(Net.Ip);
-                log.User.Id = int.Parse(HttpContext.User.FindFirst("userid").Value);
+                log.User = new UserInfo() { UserName= UseCookieGetCurrentUserName() };//int.Parse(HttpContext.User.FindFirst("userid")?.Value??"0");
                 _dbContext.Log.Add(log);
                 return _dbContext.SaveChanges() > 0;
             }
@@ -39,9 +39,19 @@ namespace AccountBook.Web.Controllers
             {
 
                 throw ex;
-            }
-           
+            }          
         }
-      
+        public string UseCookieGetCurrentUserName()
+        {
+            //如果HttpContext.User.Identity.IsAuthenticated为true，
+            //或者HttpContext.User.Claims.Count()大于0表示用户已经登录
+            string userName = string.Empty;
+            if (HttpContext.User.Identity.IsAuthenticated || HttpContext.User.Claims.Count() > 0)
+            {
+                userName = HttpContext.User.Claims.First().Value;
+            }
+            return userName;
+        }
+
     }
 }

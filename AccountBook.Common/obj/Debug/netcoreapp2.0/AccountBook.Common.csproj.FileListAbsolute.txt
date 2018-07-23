@@ -9,8 +9,6 @@ F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.C
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Common.deps.json
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Common.dll
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Common.pdb
-C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Http.Abstractions.dll
-C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Http.Abstractions.xml
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.csproj.CoreCompileInputs.cache
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.AssemblyInfoInputs.cache
 C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.AssemblyInfo.cs
@@ -21,3 +19,6 @@ F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.C
 F:\code\AccountBookDemo\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Model.dll
 F:\code\AccountBookDemo\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Model.pdb
 F:\code\AccountBookDemo\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.csproj.CopyComplete
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Model.dll
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\bin\Debug\netcoreapp2.0\AccountBook.Model.pdb
+C:\softfile\Code\mhg-demo-code\AccountBook\AccountBook.Common\obj\Debug\netcoreapp2.0\AccountBook.Common.csprojResolveAssemblyReference.cache

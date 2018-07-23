@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AccountBook.Common;
 using AccountBook.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AccountBook.Web.Controllers
 {
+    [Authorize]
     public class UserController : BaseController
     {
         public UserController(AppliactionDbContext dbContext) :base(dbContext)
@@ -63,7 +66,8 @@ namespace AccountBook.Web.Controllers
                 }
                 else
                 {
-                    user.CreateTime = DateTime.Now;                  
+                    user.CreateTime = DateTime.Now;
+                    user.IP = Net.Ip;
                     _dbContext.Users.Add(user);
                     CommonOperatorLogData("新增一条用户信息");
                 }
@@ -76,7 +80,7 @@ namespace AccountBook.Web.Controllers
             }
 
         }
-        public string DeleteExpense(int id)
+        public string DeleteUser(int id)
         {
             UserInfo user = new UserInfo() { Id = id };
             _dbContext.Entry(user).State = EntityState.Deleted;

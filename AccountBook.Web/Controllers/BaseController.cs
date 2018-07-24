@@ -17,6 +17,7 @@ namespace AccountBook.Web.Controllers
         }
         public bool CommonOperatorLogData(string str,int? state=null)
         {
+
             try
             {
                 Log log = new Log();
@@ -31,7 +32,7 @@ namespace AccountBook.Web.Controllers
                 log.IP = Net.Ip;
                 log.Content = str;
                 log.Address = Net.GetIPCitys(Net.Ip);
-                log.User = new UserInfo() { UserName= UseCookieGetCurrentUserName() };//int.Parse(HttpContext.User.FindFirst("userid")?.Value??"0");
+                log.UserId = int.Parse(HttpContext.User.FindFirst("userid").Value);
                 _dbContext.Log.Add(log);
                 return _dbContext.SaveChanges() > 0;
             }
@@ -39,7 +40,9 @@ namespace AccountBook.Web.Controllers
             {
 
                 throw ex;
-            }          
+            }
+               
+                    
         }
         public string UseCookieGetCurrentUserName()
         {

@@ -23,6 +23,13 @@
     <form class="layui-form" action="" lay-filter="formTest">
         <div class="divCommon">
             <div class="layui-form-item">
+                <label class="layui-form-label">用户</label>
+                <div class="layui-col-sm4">
+                    <select name="UserId" id="UserId" lay-filter="UserId" lay-verify="UserId">                       
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label class="layui-form-label">早餐</label>
                 <div class="layui-col-sm4">
                     <input type="text" name="MorningMoney" lay-verify="MorningMoney" value="@Model.MorningMoney" autocomplete="off" placeholder="请输入早餐消费额" class="layui-input">
@@ -66,14 +73,36 @@
             </div>
         </div>
     </form>
+    <script src="~/js/jquery-1.10.2.min.js"></script>
     <script src="~/layui/layui.js"></script>  
     <script type="text/javascript">
+        $(function () {
+            @*$("#UserId option").each(function (index) {
+                var name = $(this).attr('value');               
+                if (name == '@Model.UserId') {
+                    $(this).attr('selected', 'selected')
+                }               
+            });*@
+           //   $("#UserId").val('@Model.UserId');
+        });
         layui.use('form', function () {
             var form = layui.form,
                 $ = layui.jquery;
+
+            $("#UserId").val('@Model.UserId');          
+            form.render('select');
+            bindAllUser();
+
+          
+           
             form.verify({
+                UserId: function (value, item) {//value：表单的值、item：表单的DOM对象
+                    if (value == 0) {
+                        return "早餐消费不能为空";
+                    }
+                },
                 MorningMoney: function (value, item) {//value：表单的值、item：表单的DOM对象
-                    if (value ==0) {
+                    if (value =="") {
                         return "早餐消费不能为空";
                     }
                 },
@@ -83,7 +112,7 @@
                     }
                 },
                 EveningMoney: function (value, item) {
-                    if (value ==0) {
+                    if (value =="") {
                         return "午餐消费不能为空";
                     }
                 },
@@ -111,6 +140,19 @@
                 });
             });
         });
+
+        function bindAllUser() {
+            $.getJSON("/Admin/GetAllUser", function (data) { 
+                var select = $("#UserId");
+                select.append('<option value="">请选择用户名称</option>');              
+                if (data!=null) {
+                    for (var i in data) {
+                        select.append('<option value="' + data[i].Id + '">' + data[i].UserName + '</option>')
+                    }
+                } 
+                layui.form.render('select');
+            });
+        }
     </script>
 </body>
 </html>

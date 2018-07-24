@@ -32,14 +32,14 @@ namespace AccountBook.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(nullable: false),
                     MorningMoney = table.Column<decimal>(nullable: false),
                     AfternoonMoney = table.Column<decimal>(nullable: false),
                     EveningMoney = table.Column<decimal>(nullable: false),
                     MoreMoney = table.Column<decimal>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     UpdateTime = table.Column<DateTime>(nullable: true),
-                    Remark = table.Column<string>(maxLength: 500, nullable: true),
-                    UserId = table.Column<int>(nullable: true)
+                    Remark = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,7 +49,7 @@ namespace AccountBook.Model.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,12 +58,12 @@ namespace AccountBook.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     IP = table.Column<string>(maxLength: 100, nullable: true),
                     State = table.Column<bool>(nullable: false),
                     Content = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(maxLength: 100, nullable: true),
-                    UserId = table.Column<int>(nullable: true)
+                    Address = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,7 +73,7 @@ namespace AccountBook.Model.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

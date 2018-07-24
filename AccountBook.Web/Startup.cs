@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AccountBook.Common;
 using AccountBook.Model;
+using AccountBook.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,8 +30,11 @@ namespace AccountBook.Web
         {
             //利用ASP.NET Core的依赖注入容器系统，通过请求获取IHttpContextAccessor接口，我们拥有模拟使用HttpContext.Current这样API的可能性。但是因为IHttpContextAccessor接口默认不是由依赖注入进行实例管理的。我们先要将它注册到ServiceCollection中：
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-          
-            services.AddDbContext<AppliactionDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnection"), o => o.UseRowNumberForPaging()));
+            string sqlConnectionStr = Configuration.GetConnectionString("SqlServerConnection");
+            ConnectionFactory.ConnectionStr = sqlConnectionStr;
+            services.AddDbContext<AppliactionDbContext>(options => options.UseSqlServer(sqlConnectionStr, o => o.UseRowNumberForPaging()));
+            //注入
+           services.AddScoped<UserInfoRepository>();
 
             #region cookie使用
             //注册Cookie认证服务

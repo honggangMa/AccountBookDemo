@@ -5,7 +5,6 @@ using AccountBook.Model.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 namespace AccountBook.Web.Controllers
 {
     [Authorize]
@@ -25,9 +24,7 @@ namespace AccountBook.Web.Controllers
 
             ViewData["CurrnetUserName"] = UseCookieGetCurrentUserName();
             return View();
-        }
-
-       
+        }       
         public IActionResult ExpenseList()
         {
             return View();
@@ -80,7 +77,7 @@ namespace AccountBook.Web.Controllers
                     var model = _dbContext.Expense.Where(e => e.Id == expense.Id).FirstOrDefault();
                     if (model != null)
                     {
-                        model.User= new UserInfo { UserName=UseCookieGetCurrentUserName()};
+                        model.UserId= expense.UserId;
                         model.UpdateTime = DateTime.Now;
                         model.MorningMoney = expense.MorningMoney;
                         model.EveningMoney = expense.EveningMoney;
@@ -93,6 +90,7 @@ namespace AccountBook.Web.Controllers
                 }
                 else
                 {
+                   
                     expense.CreateTime = DateTime.Now;
                     expense.User = new UserInfo { UserName = UseCookieGetCurrentUserName() };
                     _dbContext.Expense.Add(expense);
@@ -105,7 +103,6 @@ namespace AccountBook.Web.Controllers
                 CommonOperatorLogData(ex.ToString());
                 throw ex;
             }
-
         }
         public string DeleteExpense(int id)
         {
@@ -113,6 +110,11 @@ namespace AccountBook.Web.Controllers
             _dbContext.Entry(expense).State = EntityState.Deleted;
             CommonOperatorLogData("删除一条消费数据");
             return _dbContext.SaveChanges() > 0 ? "ok" : "no";
+        }
+        public IActionResult GetAllUser()
+        {
+          var data=  _dbContext.Users.Select(u => new { u.Id, u.UserName }).ToList();
+            return Json(data);
         }
     }
 }

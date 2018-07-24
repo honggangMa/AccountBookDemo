@@ -40,7 +40,7 @@ namespace AccountBook.Model.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -67,7 +67,7 @@ namespace AccountBook.Model.Migrations
 
                     b.Property<bool>("State");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -106,15 +106,17 @@ namespace AccountBook.Model.Migrations
             modelBuilder.Entity("AccountBook.Model.Expense", b =>
                 {
                     b.HasOne("AccountBook.Model.UserInfo", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("Expense")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AccountBook.Model.Log", b =>
                 {
                     b.HasOne("AccountBook.Model.UserInfo", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("Log")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

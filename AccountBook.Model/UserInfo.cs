@@ -12,11 +12,13 @@ namespace AccountBook.Model
         public string UserName { get; set; }
         [MaxLength(32)]
         public string Password { get; set; }
-        public DateTime CreateTime { get; set; }
+        public DateTime CreateTime { get; set; } = DateTime.Now;
         public DateTime? UpdateTime { get; set; }
         [MaxLength(80)]
         public string  IP { get; set; }
         [MaxLength(32)]
         public string  RoleName { get; set; }
+        public virtual ICollection<Expense> Expense { get; set; }
+        public virtual ICollection<Log> Log { get; set; }
     }
 }

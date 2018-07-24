@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccountBook.Model.Migrations
 {
     [DbContext(typeof(AppliactionDbContext))]
-    [Migration("20180719091402_Migrations")]
+    [Migration("20180724071128_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace AccountBook.Model.Migrations
 
                     b.Property<DateTime?>("UpdateTime");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -69,7 +69,7 @@ namespace AccountBook.Model.Migrations
 
                     b.Property<bool>("State");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -108,15 +108,17 @@ namespace AccountBook.Model.Migrations
             modelBuilder.Entity("AccountBook.Model.Expense", b =>
                 {
                     b.HasOne("AccountBook.Model.UserInfo", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("Expense")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AccountBook.Model.Log", b =>
                 {
                     b.HasOne("AccountBook.Model.UserInfo", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("Log")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
